@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('transaksi_id')->references('id')->on('transaksis');
             $table->foreignId('produk_id')->references('id')->on('produks');
-            $table->int('qty')->nullable();
+            $table->integer('qty')->nullable();
             $table->timestamps();
         });
     }

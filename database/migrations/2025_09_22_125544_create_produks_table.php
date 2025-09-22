@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('nama')->nullable();
-            $table->int('harga_pokok')->nullable();
-            $table->int('harga_jual')->nullable();
+            $table->integer('harga_pokok')->nullable();
+            $table->integer('harga_jual')->nullable();
             $table->string('stok')->nullable();
             $table->boolean('is_produk_stok')->nullable();
             $table->boolean('is_ganti_stok')->nullable();

@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kas', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->int('uang')->nullable();
-            $table->int('laba')->nullable();
-            $table->string('keterangan')->nullable();
-            $table->date('tanggal_pengeluaran')->nullable();
-            $table->boolean('is_tunai')->nullable();
-            $table->boolean('is_masuk')->nullable();
+            $table->foreignId('pelanggan_id')->references('id')->on('pelanggans');
+            $table->integer('total_harga')->nullable();
+            $table->integer('laba')->nullable();
+            $table->string('metode_pembayaran')->nullable();
+            $table->string('status_pembayaran')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kas');
+        Schema::dropIfExists('transaksis');
     }
 };
