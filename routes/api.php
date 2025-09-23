@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
@@ -19,6 +20,8 @@ Route::post('/login', function (Request $request) {
         'user'  => $user
     ]);
 });
+
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
     $request->user()->currentAccessToken()->delete();

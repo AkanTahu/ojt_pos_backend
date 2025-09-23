@@ -25,7 +25,7 @@ return new class extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('toko_id')->references('id')->on('tokos')->nullable();
+            $table->foreignId('toko_id')->nullable()->constrained('tokos');
         });
     }
 
