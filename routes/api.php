@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::post('/login', function (Request $request) {
@@ -30,4 +31,8 @@ Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
 
 Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('products', ProdukController::class);
 });

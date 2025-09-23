@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Toko;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Produk;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,6 +30,42 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('password123'),
             'toko_id' => 1
+        ]);
+
+        Produk::create([
+            'user_id' => 1,
+            'nama' => 'Produk A',
+            'harga_pokok' => 10000,
+            'harga_jual' => 15000,
+            'stok' => '50',
+            'is_produk_stok' => true,
+            'is_ganti_stok' => false,
+            'gambar' => null,
+            'keterangan' => 'Produk A unggulan',
+        ]);
+
+        Produk::create([
+            'user_id' => 1,
+            'nama' => 'Produk B',
+            'harga_pokok' => 20000,
+            'harga_jual' => 25000,
+            'stok' => '30',
+            'is_produk_stok' => true,
+            'is_ganti_stok' => false,
+            'gambar' => null,
+            'keterangan' => 'Produk B best seller',
+        ]);
+
+        Produk::create([
+            'user_id' => 1,
+            'nama' => 'Produk C',
+            'harga_pokok' => 5000,
+            'harga_jual' => 8000,
+            'stok' => '100',
+            'is_produk_stok' => true,
+            'is_ganti_stok' => true,
+            'gambar' => null,
+            'keterangan' => 'Produk C murah meriah',
         ]);
     }
 }

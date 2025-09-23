@@ -14,6 +14,19 @@ class ProdukResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'nama' => $this->nama,
+            'harga_pokok' => $this->harga_pokok,
+            'harga_jual' => $this->harga_jual,
+            'stok' => $this->stok,
+            'is_produk_stok' => $this->is_produk_stok,
+            'is_ganti_stok' => $this->is_ganti_stok,
+            'gambar' => $this->gambar,
+            'keterangan' => $this->keterangan,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }
