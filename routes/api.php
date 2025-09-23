@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DetailTransaksiController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,4 +38,7 @@ Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('products', ProdukController::class);
+    Route::apiResource('pelanggas', PelangganController::class);
+    Route::apiResource('transaksis', TransaksiController::class);
+    Route::apiResource('detailTransaksis', DetailTransaksiController::class);
 });
