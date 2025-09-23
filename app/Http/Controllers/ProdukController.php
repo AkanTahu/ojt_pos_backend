@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProdukResource;
@@ -13,7 +14,11 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        return ProdukResource::collection(Produk::all());
+        $user = auth()->user();
+        $userIds = User::where('toko_id', $user->toko_id)->pluck('id');
+        $produks = Produk::whereIn('user_id', $userIds)->get();
+
+        return ProdukResource::collection($produks);
     }
 
     /**
@@ -22,7 +27,6 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'nama' => 'required|string|max:255',
             'harga_pokok' => 'required|integer',
             'harga_jual' => 'required|integer',
@@ -33,7 +37,7 @@ class ProdukController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $produk = Produk::create($validated);
+        $produk = Produk::create($validated + ['user_id' => auth()->id()]);
 
         return new ProdukResource($produk);
     }
