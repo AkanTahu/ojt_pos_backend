@@ -14,6 +14,13 @@ class DetailTransaksiResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'qty' => $this->qty,
+            'user' => new UserResource($this->whenLoaded('user')),
+            'produk' => new ProdukResource($this->whenLoaded('produk')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

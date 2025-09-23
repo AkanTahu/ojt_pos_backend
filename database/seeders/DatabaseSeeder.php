@@ -6,6 +6,7 @@ use App\Models\Toko;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Produk;
+use App\Models\Transaksi;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,11 +26,25 @@ class DatabaseSeeder extends Seeder
             'kota' => 'Malang Jaya',
         ]);
 
+        Toko::create([
+            'nama' => 'Toko 2 Makmur',
+            'alamat' => 'Jalan Selamat 2 Jaya',
+            'telepon' => '08222',
+            'kota' => 'batu Jaya',
+        ]);
+
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Admin Toko 1 Jaya',
             'email' => 'asd@example.com',
             'password' => Hash::make('asdasd'),
             'toko_id' => 1
+        ]);
+
+        User::factory()->create([
+            'name' => 'Admin Toko 2 JayaMakmur',
+            'email' => 'asd2@example.com',
+            'password' => Hash::make('asdasd'),
+            'toko_id' => 2
         ]);
 
         Produk::create([
@@ -67,5 +82,10 @@ class DatabaseSeeder extends Seeder
             'gambar' => null,
             'keterangan' => 'Produk C murah meriah',
         ]);
+
+        Transaksi::create([]);
+
+
+
     }
 }

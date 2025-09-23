@@ -14,6 +14,16 @@ class PelangganResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'nama' => $this->nama,
+            'alamat' => $this->alamat,
+            'no_hp' => $this->no_hp,
+            'barcode' => $this->barcode,
+            'keterangan' => $this->keterangan,
+            'user' => new UserResource($this->whenLoaded('user')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }
