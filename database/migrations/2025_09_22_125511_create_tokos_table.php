@@ -23,6 +23,10 @@ return new class extends Migration
             $table->string('watermark')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('toko_id')->references('id')->on('tokos')->nullable();
+        });
     }
 
     /**
