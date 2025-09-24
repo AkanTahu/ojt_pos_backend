@@ -25,7 +25,10 @@ Route::post('/login', function (Request $request) {
     ]);
 });
 
-Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::post('/register', function() {
+    \Log::info('Route /register hit');
+    return app(RegisteredUserController::class)->store(request());
+});
 
 Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
     $request->user()->currentAccessToken()->delete();
